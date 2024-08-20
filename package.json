@@ -1,0 +1,17 @@
+{
+  "name": "mfe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "(cd appshell && npm install); (cd usermanagement && npm install)",
+    "start": "concurrently --names \"APPSHL,USRMAN\" -c \"bgGreen.bold,bgMagenta.bold\" \"cd appshell; npm start;\" \"cd usermanagement; npm start;\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
