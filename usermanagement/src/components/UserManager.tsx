@@ -1,69 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import '../tailwind.css'
-
-type UserData = {
-  name: {
-    first: string
-    last: string
-  },
-  login: {
-    uuid: string
-    username: string
-    password: string
-  },
-  email: string
-  id: {
-    name: string
-    value: string
-  },
-  cell: string
-}
+import React, { useEffect } from 'react';
+import '../index.scss'
+import { useSelector, useDispatch } from 'react-redux';
+import { GlobalState } from '../store';
+import { UserData } from '../types/UserManager';
+import { fetchUserInitialState } from '../store/UserManager/userManagerSlice';
+import UsersTable from './UserManager/UsersTable';
 
 const UserManager: React.FC = () => {
-
-  const [isLoading, setIsLoading] = useState(true)
-  const [users, setUsers] = useState<Array<UserData>>([])
+  const dispatch = useDispatch()
+  const users = useSelector<GlobalState, Array<UserData>>((state) => state.userManager)
 
   useEffect(() => {
-    fetch("https://randomuser.me/api/?format=json&inc=name,login,id,email,picture,cell&results=20&noinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setUsers(data.results)
-        setIsLoading(false)
-      })
+    if (users.length >= 0)
+      dispatch<any>(fetchUserInitialState())
   }, [])
 
+  const handleDelete = (id: number) => {
+    alert('deleting: ' + id)
+  }
+
   return (
-    <div>
-      <h1>User Management</h1>
-      <div>
-        <table className="flex-auto border-collapse border border-slate-500">
-          <thead>
-            <tr>
-              <th className="border border-slate-600">Name</th>
-              <th className="border border-slate-600">username</th>
-              <th className="border border-slate-600">email</th>
-              <th className="border border-slate-600">cell</th>
-            </tr>
-          </thead>
-          <tbody>
-            {isLoading ?
-              <tr>
-                <td colSpan={2}>Loading...</td>
-              </tr>
-              :
-              users.map(user => (
-                <tr key={user.login.uuid}>
-                  <td className="border border-slate-700">{`${user.name.first} ${user.name.last}`}</td>
-                  <td className="border border-slate-700">{user.login.username}</td>
-                  <td className="border border-slate-700">{user.email}</td>
-                  <td className="border border-slate-700">{user.cell}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+    <div className='flex flex-col h-dvh p-8 items-center bg-stone-800 text-white overflow-y-auto'>
+      <h1 className='mb-4 font-extrabold text-5xl'>User Management</h1>
+      <div className='container'>
+        <UsersTable users={users} onDelete={handleDelete} />
       </div>
     </div>
   );

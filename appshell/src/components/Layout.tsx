@@ -1,14 +1,13 @@
-import React, { Suspense } from "react"
+import React from "react"
 import Header from "./Layout/Header";
-//@ts-expect-error Can't resolve 'usermanagement/UserManager'
-const UserManager = React.lazy(() => import("usermanagement/UserManager"))
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
 
     return (
-        <div>
+        <div className="relative h-dvh">
             <Header />
-            <Suspense fallback={'loading usermanager'}><UserManager /></Suspense>
+            <Outlet />
         </div>
     );
 }
