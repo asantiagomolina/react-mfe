@@ -7,6 +7,27 @@ const deps = require("./package.json").dependencies;
 
 const printCompilationMessage = require('./compilation.config.js');
 
+const federationConfig = {
+  name: "taskmanager",
+  filename: "remoteEntry.js",
+  remotes: {},
+  exposes: {
+    './TaskManager': './src/pages/TaskManager.tsx',
+    './taskManagerSlice': './src/store/TaskManager/taskManagerSlice.ts'
+  },
+  shared: {
+    ...deps,
+    react: {
+      singleton: true,
+      requiredVersion: deps.react,
+    },
+    "react-dom": {
+      singleton: true,
+      requiredVersion: deps["react-dom"],
+    },
+  },
+}
+
 module.exports = (_, argv) => ({
   output: {
     publicPath: "http://localhost:3003/",
@@ -48,7 +69,17 @@ module.exports = (_, argv) => ({
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            }
+          }, "postcss-loader"
+        ],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,
@@ -61,26 +92,10 @@ module.exports = (_, argv) => ({
   },
 
   plugins: [
-    new ModuleFederationPlugin({
-      name: "taskmanager",
-      filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
-      shared: {
-        ...deps,
-        react: {
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: deps["react-dom"],
-        },
-      },
-    }),
+    new ModuleFederationPlugin(federationConfig),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
     }),
-    new Dotenv()
+    new Dotenv(),
   ],
 });
