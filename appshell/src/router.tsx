@@ -6,13 +6,15 @@ import { EFallback } from './components/Errors';
 
 //@ts-expect-error Can't resolve 'usermanagement/UserManager'
 const UserManager = React.lazy(() => import('usermanagement/UserManager'))
-const Landing = React.lazy(() => import('./components/Landing'))
+const Landing = React.lazy(() => import('./pages/Landing'))
+const Responses = React.lazy(() => import('./pages/Responses'))
 
 export const paths = {
     ROOT: "/",
     USER_MANAGER: "user_management",
     TASK_MANAGER: "task_manager",
     REPORTS: "reports",
+    RESPONSES: "responses"
 }
 
 export const fallbackElement = <Loading />
@@ -33,6 +35,10 @@ export const routes = [
     {
         path: paths.REPORTS,
         element: <h2>Reports</h2>
+    },
+    {
+        path: paths.RESPONSES,
+        element: <Responses />
     },
 ]
 
