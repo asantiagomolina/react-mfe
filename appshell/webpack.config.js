@@ -11,7 +11,8 @@ const federationConfig = {
   name: "appshell",
   filename: "remoteEntry.js",
   remotes: {
-    "usermanagement": "usermanagement@http://localhost:3002/"
+    "usermanagement": "usermanagement@http://localhost:3002/",
+    "taskmanager": "taskmanager@http://localhost:3003/",
   },
   exposes: {},
   shared: {

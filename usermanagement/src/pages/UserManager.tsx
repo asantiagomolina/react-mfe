@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { GlobalState } from '../store';
 import { UserData } from '../types/UserManager';
 import { fetchUserInitialState } from '../store/UserManager/userManagerSlice';
-import UsersTable from './UserManager/UsersTable';
+import UsersTable from '../components/UserManager/UsersTable';
 
 const UserManager: React.FC = () => {
   const dispatch = useDispatch()

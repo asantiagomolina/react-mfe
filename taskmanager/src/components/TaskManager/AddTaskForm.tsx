@@ -13,19 +13,19 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ task, onAddTask, onChange, er
     }
 
     return (
-        <form className='flex' onSubmit={handleFormSubmit}>
-            <div>
-                <button className='text-nowrap mr-5 bg-slate-500 hover:bg-slate-700 bg-opacity-50 px-3 py-2 rounded-md font-bold' onClick={handleFormSubmit}>Add Task</button>
+        <form className='flex flex-col-reverse sm:flex-row' onSubmit={handleFormSubmit}>
+            <div className="mt-4 sm:mt-0">
+                <button className='w-full sm:w-auto text-nowrap mr-5 bg-slate-500 hover:bg-slate-700 bg-opacity-50 px-3 py-2 rounded-md font-extrabold sm:font-bold text-xl sm:text-base' onClick={handleFormSubmit}>Add Task</button>
             </div>
             <div className='w-full'>
                 <input
                     type="text"
-                    className='h-10 bg-transparent border-b w-full outline-none focus:border-blue-400 tracking-wider'
+                    className='h-10 text-xl sm:text-base bg-transparent border-b w-full outline-none focus:border-blue-400 tracking-wider'
                     placeholder='Write your task here...'
                     value={task}
                     onChange={handleChange}
                 />
-                {error && <small className='justify-self-end text-red-400'>{error}</small>}
+                {error && <span className='text-lg sm:text-sm justify-self-end text-red-400'>{error}</span>}
             </div>
         </form>
     )

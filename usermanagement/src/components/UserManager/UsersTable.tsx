@@ -47,7 +47,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete }) => {
                     <div className='bg-white mb-5 border rounded-lg p-3 text-lg font-bold text-center'>No records found</div>
                     :
                     users.map(user => (
-                        <div className='bg-white mb-5 border rounded-lg overflow-hidden'>
+                        <div key={user.id} className='bg-white mb-5 border rounded-lg overflow-hidden'>
                             <div>
                                 <h3 className='bg-teal-400 uppercase text-white font-bold text-center p-1'>name</h3>
                                 <span className='p-3 text-lg'>{user.name}</span>

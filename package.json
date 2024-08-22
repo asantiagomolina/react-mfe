@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "postinstall": "(cd appshell && npm install); (cd usermanagement && npm install)",
-    "start": "concurrently --names \"APPSHL,USRMAN\" -c \"bgGreen.bold,bgMagenta.bold\" \"cd appshell; npm start;\" \"cd usermanagement; npm start;\"",
+    "postinstall": "(cd appshell && npm install); (cd usermanagement && npm install); (cd taskmanager && npm install)",
+    "start": "concurrently --names \"APPSHL,USRMAN,TSKMAN\" -c \"bgGreen.bold,bgMagenta.bold,bgYellow.bold\" \"cd appshell; npm start;\" \"cd usermanagement; npm start;\" \"cd taskmanager; npm start;\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

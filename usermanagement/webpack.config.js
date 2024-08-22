@@ -12,7 +12,7 @@ const federationConfig = {
   filename: "remoteEntry.js",
   remotes: {},
   exposes: {
-    "./UserManager": "./src/components/UserManager",
+    "./UserManager": "./src/pages/UserManager",
     "./userManagerSlice": "./src/store/UserManager/userManagerSlice"
   },
   shared: {

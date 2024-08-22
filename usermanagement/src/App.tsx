@@ -5,7 +5,7 @@ import { EFallback } from './components/Errors'
 import { Provider } from 'react-redux'
 import store from './store'
 
-import UserManager from './components/UserManager'
+import UserManager from './pages/UserManager'
 import './index.scss'
 
 const rootElement = document.getElementById('app')

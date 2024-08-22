@@ -28,10 +28,10 @@ const TaskManager: React.FC = () => {
             <div className='container'>
                 <h2 className='font-bold text-xl'>Tasks List</h2>
                 <hr className='my-4' />
-                <ul className='py-2 px-4'>
+                <ul className='py-2 sm:px-4'>
                     {
                         showNoTasks ?
-                            <li className='font-bold my-4'>
+                            <li className='font-bold text-xl sm:text-lg my-4'>
                                 No tasks created
                             </li>
                             :

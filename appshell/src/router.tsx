@@ -6,6 +6,8 @@ import { EFallback } from './components/Errors';
 
 //@ts-expect-error Can't resolve 'usermanagement/UserManager'
 const UserManager = React.lazy(() => import('usermanagement/UserManager'))
+//@ts-expect-error Can't resolve 'usermanagement/UserManager'
+const TaskManager = React.lazy(() => import('taskmanager/TaskManager'))
 const Landing = React.lazy(() => import('./pages/Landing'))
 const Responses = React.lazy(() => import('./pages/Responses'))
 
@@ -30,7 +32,7 @@ export const routes = [
     },
     {
         path: paths.TASK_MANAGER,
-        element: <h2>Task Manager</h2>
+        element: (<Suspense fallback={fallbackElement}><TaskManager /></Suspense>)
     },
     {
         path: paths.REPORTS,
